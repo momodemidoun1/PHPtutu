@@ -6,28 +6,7 @@ $crenaux = CRENAUX[(int)date('N') -1];
 $heure = (int)date('G');
 $ouvert = in_crenaux($heure, $crenaux);        
 ?>
-<form action="/contact.php" method="GET">
-<div class="row">
-    <div class="col-md-4">
-        <div class="form-group">
-            <input type="number" class="form-control" name="heure" id="">
-        </div>
-    </div>
-    <div class="col-md-4">
-        <select class="custom-select">
-            <option selected>Open this select menu</option>
-           <?php foreach(JOURS as $jour) :?>
-             <option value="<?=$jour?>"><?=$jour?></option> 
-           <?php endforeach;?>
-        </select>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
-    </div>
-</div>
-</form>
+
 <div class="row">
     <div class="col-md-8">
         <h2> Nous contacter </h2>
@@ -38,6 +17,18 @@ $ouvert = in_crenaux($heure, $crenaux);
     <div class="col-md-4">
         <?= $ouvert?>
         <h3>Horaire de travail</h3>
+        <form action="/contact.php" method="GET">
+            <div class="form-group">
+                <input type="number" class="form-control" name="heure" id="">
+            </div>
+            <select class="custom-select">
+                <option selected>Open this select menu</option>
+                <?php foreach(JOURS as $jour) :?>
+                    <option value="<?=$jour?>"><?=$jour?></option> 
+                <?php endforeach;?>
+            </select>
+                <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+        </form>
         <ul>
             <?php foreach(JOURS as $k => $jour) : ?>
                 <li <?php if((int)date('N') -1 === $k ):?>
