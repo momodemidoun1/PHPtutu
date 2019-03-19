@@ -33,14 +33,6 @@ function Deviner($chiffre, $nombre){
   ' .$nombre . '</div>';
 }
 
-function getPrice(){
-  $price = 0;
-  foreach($inputs as $input => $value){
-    $price += $input[$value];
-  }
-  return $price;
-}
-
 function checkbox(string $name, string $value, int $price, array $data) :string
 {
   $attributes = '';
@@ -65,7 +57,7 @@ function radio(string $name, string $value, int $price, array $data) :string
 HTML;
 }
 
-function crenau_html(array $crenaux, string $jour) :string
+function crenau_html(array $crenaux) :string
 {
   /* My solution
   $horaire = [];
@@ -74,13 +66,15 @@ function crenau_html(array $crenaux, string $jour) :string
   }
   */
   //grafikart solution
+  if(empty($crenaux)){
+    return 'Fermé';
+  }
   $phrase = [];
   foreach($crenaux as $crenau){
-    $phrase [] =  ' de <strong>' . $crenau[0] .'h</strong> à <strong>' . $crenau[1] . ' h</strong>' ;
+    $phrase [] =  'de <strong> ' . $crenau[0] . '</strong> à ' . '<strong>' . $crenau[1] .'h </strong>'; 
   }
-  $result = '- '.$jour.': Ouvert de '.implode(' et ', $phrase);  
+  return 'Ouvert de '.implode(' et ', $phrase);  
   //return 'Le magasin est ouvert de ' . $horaire[0] .' et de ' . $horaire[1] . ' .'; //My return
-  return $result;
 }
 
 function jours_html(array $crenaux, array $jours) :string{
@@ -90,5 +84,24 @@ function jours_html(array $crenaux, array $jours) :string{
       $ouv .= crenau_html($crenau, $jour) ."\n";
 
   }
+}
   return $ouv;
+}
+
+function in_crenaux(int $heure, array $crenaux) :string{
+  foreach($crenaux as $crenau){
+    $debut = $crenau[0];
+    $fin = $crenau[1];
+    if($heure >= $debut && $heure < $fin){
+      return <<<HTML
+                <div class ="alert alert-success">Le magasin est ouvert! </div>
+HTML;
+    }
+
+  }
+    return <<<HTML
+              <div class ="alert alert-danger">Le magasin est fermé! </div>
+HTML;
+
+
 }

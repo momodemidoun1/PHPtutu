@@ -1,8 +1,10 @@
 <?php
 $title = 'Nous contacter';
 require 'header.php';
-require_once 'config.php'; 
-$crenaux = jours_html(CRENAUX, JOURS);
+require_once 'config.php';
+$crenaux = CRENAUX[(int)date('N') -1];
+$heure = (int)date('G');
+$ouvert = in_crenaux($heure, $crenaux);        
 ?>
 <div class="row">
     <div class="col-md-8">
@@ -12,8 +14,19 @@ $crenaux = jours_html(CRENAUX, JOURS);
             rem! Id, ullam quod!</p>
     </div>
     <div class="col-md-4">
+        <?= $ouvert?>
         <h3>Horaire de travail</h3>
-        <?= $crenaux?>       
+        <ul>
+            <?php foreach(JOURS as $k => $jour) : ?>
+                <li <?php if((int)date('N') -1 === $k ):?>
+                    <?= 'style="color:green"'?>>
+                    <?php $key = $k;?>
+                <?php endif;?>
+                    <strong><?= $jour?> : </strong>
+                    <?= crenau_html(CRENAUX[$k])?>       
+                </li>
+            <?php endforeach;?>
+        </ul>
     </div>
 </div>
  <?php require 'footer.php'; ?>
