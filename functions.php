@@ -57,6 +57,16 @@ function radio(string $name, string $value, int $price, array $data) :string
 HTML;
 }
 
+function select(string $name, $value, array $options): string{
+  
+  $html_options = [];
+  foreach($options as $k => $option){
+    $attributes = $k === $value ? 'selected' : ''; 
+    $html_options[] = '<option value='.$k.' '.$attributes.'>'.$option.'</option>';
+  }
+  return '<select class="form-control" name='.$name.'>' . implode($html_options) . '</select>';
+}
+
 function crenau_html(array $crenaux) :string
 {
   /* My solution
@@ -87,7 +97,9 @@ function jours_html(array $crenaux, array $jours) :string{
 }
   return $ouv;
 }
-
+/**
+ * we check if the store is open on certain hour ($hour) and a day ($crenaux) of the week
+ */
 function in_crenaux(int $heure, array $crenaux) :string{
   foreach($crenaux as $crenau){
     $debut = $crenau[0];

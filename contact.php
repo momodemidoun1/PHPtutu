@@ -2,8 +2,9 @@
 $title = 'Nous contacter';
 require 'header.php';
 require_once 'config.php';
-$crenaux = CRENAUX[(int)date('N') -1];
-$heure = (int)date('G');
+$heure = (int)($_GET['heure'] ?? date('G'));
+$jour = (int)($_GET['jour'] ?? date('N') -1);
+$crenaux = CRENAUX[$jour];
 $ouvert = in_crenaux($heure, $crenaux);        
 ?>
 
@@ -17,17 +18,14 @@ $ouvert = in_crenaux($heure, $crenaux);
     <div class="col-md-4">
         <?= $ouvert?>
         <h3>Horaire de travail</h3>
-        <form action="/contact.php" method="GET">
+        <form action="" method="GET">
             <div class="form-group">
-                <input type="number" class="form-control" name="heure" id="">
+                <input type="number" class="form-control" name="heure" value="<?=$heure ?>">
             </div>
-            <select class="custom-select">
-                <option selected>Open this select menu</option>
-                <?php foreach(JOURS as $jour) :?>
-                    <option value="<?=$jour?>"><?=$jour?></option> 
-                <?php endforeach;?>
-            </select>
-                <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+            <div class="form-group">
+                <?= select('jour', $jour, JOURS)?>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm" >Voir si le magasin est ouvert</button>
         </form>
         <ul>
             <?php foreach(JOURS as $k => $jour) : ?>
