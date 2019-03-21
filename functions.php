@@ -1,20 +1,21 @@
 <?php
-require 'config.php';
+require 'data/config.php';
 function nav_item(string $link, string $title, string $linkclass = '') {
   $classe ='nav-item';
   if(($_SERVER['SCRIPT_NAME']) === $link){
     $classe .= ' active';
   }
  return <<<HTML
- <li class="$classe">
-  <a class="$linkclass" href="$link"> $title <span class="sr-only">(current)</span></a>
-</li>
+          <li class="$classe">
+            <a class="$linkclass" href="$link"> $title <span class="sr-only">(current)</span></a>
+          </li>
 HTML;
 }
 
 function nav_menu(string $linkclass = ''){
   return 
-        nav_item('/index.php', 'Acceuil', $linkclass) . 
+        nav_item('/index.php', 'Acceuil', $linkclass) .
+        nav_item('/menu.php', 'Menu', $linkclass) . 
         nav_item('/contact.php', 'Nous contacter', $linkclass); 
 }
 

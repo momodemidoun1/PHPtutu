@@ -1,2 +1,5 @@
-<?= nav_item('/index.php', 'Acceuil', $class);?>
-<?= nav_item('/contact.php', 'Nous contacter', $class);?>    
+<?php 
+$title = 'Notre menu ';
+require 'elements/header.php';?>
+
+<?php require 'elements/footer.php';?>
