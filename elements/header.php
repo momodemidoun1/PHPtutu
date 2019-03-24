@@ -1,4 +1,13 @@
-<?php require 'functions.php';?>
+<?php
+session_start();
+if(!isset($_SESSION['counter'])){
+  $_SESSION['counter'] = 1;
+}else{
+  file_put_contents(__DIR__ . DIRECTORY_SEPARATOR . 'counter.php', $_SESSION['counter']);  
+  $_SESSION['counter']++;
+}
+require 'functions.php';
+?>
 
 <!doctype html>
 <html lang="en">

@@ -1,5 +1,5 @@
 <?php
-require 'header.php';
+require 'elements/header.php';
 require_once 'functions.php';
 $parfums = [
     'fraise' => 4,
@@ -78,4 +78,4 @@ foreach(['parfum', 'supplement', 'cornet'] as $name){
 </form>
 
 <?php
-require 'footer.php'?>
+require 'elements/footer.php'?>

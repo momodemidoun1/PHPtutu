@@ -115,6 +115,4 @@ HTML;
     return <<<HTML
               <div class ="alert alert-danger">Le magasin est fermé! </div>
 HTML;
-
-
 }
