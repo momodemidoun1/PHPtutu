@@ -2,6 +2,7 @@
 
 $file_name =  __DIR__ . DIRECTORY_SEPARATOR . 'emails'. DIRECTORY_SEPARATOR .  date('Y-m-d');
 $error = null;
+$email = '';
 if(!empty($_POST['email'])){
     $email = $_POST['email'];
     if(filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -11,7 +12,6 @@ if(!empty($_POST['email'])){
     }
 }
 ?>
-<?= $alert ?>
 <h3>S'inscrire au newsletter</h3>
 <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui commodi delectus rem ipsam laboriosam ratione, dignissimos libero illum repellendus laborum non eius asperiores. Amet minima sint sapiente. Error, voluptates repellat!

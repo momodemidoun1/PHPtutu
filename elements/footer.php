@@ -1,8 +1,6 @@
 <?php 
-session_start();
+require_once 'functions/counter.php';
 $file_name = date('Y-m-d');
-$file = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'functions'. DIRECTORY_SEPARATOR .'counter.php';
-require_once($file);
 add_vue();
 $vues = vue_number(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'counter ' . $file_name . '.php'); // we stored the value of the function to avoid calling the file_get_contents every time (can be so heavy on load).  
 ?>
