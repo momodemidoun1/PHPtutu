@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(!isset($_SESSION['counter'])){
   $_SESSION['counter'] = 1;
 }else{
@@ -7,6 +6,7 @@ if(!isset($_SESSION['counter'])){
   $_SESSION['counter']++;
 }
 require 'functions.php';
+require_once 'functions/auth.php';
 ?>
 
 <!doctype html>
@@ -61,6 +61,7 @@ require 'functions.php';
     <ul class="navbar-nav mr-auto">
      <?= nav_menu('nav-link') ?>
     </ul>
+      <?= is_connected() ? '<ul class="navbar-nav">' . nav_item('/logout.php', 'Se déconnecter', 'nav-link') . '</ul>' : '' ?>
   </div>
 </nav>
 
