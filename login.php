@@ -5,7 +5,8 @@ if(is_connected()){
 }
 $errors = [];
 if(!empty($_POST)){
-    if($_POST['email'] === 'momo@gmail.com' && $_POST['password'] === 'admin'){
+    $hash = password_hash('admin', PASSWORD_DEFAULT, ['cost' => 12]);
+    if($_POST['email'] === 'momo@gmail.com' && password_verify($_POST['password'], $hash)){
         session_start();
         $_SESSION['connected'] = 'connected';
         header('Location: dashboard.php');

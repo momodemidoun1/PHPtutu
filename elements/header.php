@@ -62,7 +62,7 @@ require_once 'functions/auth.php';
      <?= nav_menu('nav-link') ?>
     </ul>
       <?= is_connected() ? '<ul class="navbar-nav">' . nav_item('/logout.php', 'Se déconnecter', 'nav-link') . '</ul>' : '' ?>
-  </div>
+  </div>  
 </nav>
 
 <main role="main" class="container">
