@@ -1,4 +1,5 @@
 <?php
+$title = ' try Nous conatcter'
 $title = 'Nous contacter';
 require 'elements/header.php';
 require_once 'data/config.php';
